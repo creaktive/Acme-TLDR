@@ -1,5 +1,5 @@
 package Acme::TLDR;
-# ABSTRACT: Abbreviate Perl namespace
+# ABSTRACT: Abbreviate Perl namespaces for the Extreme Perl Golf
 
 =head1 SYNOPSIS
 

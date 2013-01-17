@@ -4,11 +4,11 @@
 
 =head1 NAME
 
-Acme::TLDR - Abbreviate Perl namespace
+Acme::TLDR - Abbreviate Perl namespaces for the Extreme Perl Golf
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
