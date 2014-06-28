@@ -53,6 +53,7 @@ use ExtUtils::Installed;
 use File::HomeDir;  # the only external dependency
 use File::Spec::Functions;
 use Filter::Simple;
+use List::MoreUtils qw(uniq);
 use Storable;
 
 # VERSION
@@ -103,7 +104,7 @@ sub _installed {
         @INC
     ) {
         _debug(q(no cache found; generating));
-        $modules = [ ExtUtils::Installed->new->modules ];
+        $modules = [ uniq qw[Digest::MD5] => ExtUtils::Installed->new->modules ];
         store $modules => $cache
             unless exists $ENV{NOCACHE};
     } else {
