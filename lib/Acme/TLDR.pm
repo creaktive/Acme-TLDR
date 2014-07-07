@@ -50,10 +50,11 @@ use warnings qw(all);
 
 use Digest::MD5 qw(md5_hex);
 use ExtUtils::Installed;
-use File::HomeDir;  # the only external dependency
+use File::HomeDir;
 use File::Spec::Functions;
 use Filter::Simple;
 use List::MoreUtils qw(uniq);
+use Module::CoreList;
 use Storable;
 
 # VERSION
@@ -103,8 +104,13 @@ sub _installed {
         map { catfile($_, q(perllocal.pod)) }
         @INC
     ) {
+        ## no critic (ProhibitPackageVars)
         _debug(q(no cache found; generating));
-        $modules = [ uniq qw[Digest::MD5] => ExtUtils::Installed->new->modules ];
+        $modules = [
+            uniq
+                keys %{$Module::CoreList::version{$]}},
+                ExtUtils::Installed->new->modules,
+        ];
         store $modules => $cache
             unless exists $ENV{NOCACHE};
     } else {
